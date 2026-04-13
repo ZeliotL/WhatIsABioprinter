@@ -29,8 +29,7 @@
             hiddenVideo.preload = "auto";
 
             visibleVideo.play();
-
-            var totalDuration = visibleVideo.duration;
+            
             setInterval(updateTimestamp, 200);
 
             function backwards() { 
@@ -52,6 +51,7 @@
                 visibleVideo.play();
             } 
             function updateTimestamp() {
+                var totalDuration = visibleVideo.duration;
                 var timestamp = visibleVideo.currentTime;
                 hiddenVideo.currentTime = totalDuration - timestamp;
             }
