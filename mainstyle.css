@@ -1,0 +1,37 @@
+html, body {
+                width: 100vw;
+                height: 100vh;
+                margin: 0;
+                padding: 0;
+                background-color: green;
+            }
+#container {
+    width: inherit;
+    height: inherit;
+    margin: 0;
+    padding: 0;
+    background-color: pink;
+}
+h1 {
+    margin: 0;
+    padding: 0;
+}
+
+video{
+    width: inherit;
+    height: inherit;
+    object-fit: contain;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+button{
+    position: relative;
+    z-index: 10;
+}
+#forward-video{
+    z-index: 5;
+}
+#backward-video{
+    z-index: 4;
+}
