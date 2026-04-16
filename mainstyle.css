@@ -1,37 +1,62 @@
 html, body {
                 width: 100vw;
-                height: 100vh;
+                height: 65vh;
                 margin: 0;
                 padding: 0;
-                background-color: green;
+                background-color: #000000;
             }
-#container {
-    width: inherit;
-    height: inherit;
-    margin: 0;
-    padding: 0;
-    background-color: pink;
-}
-h1 {
-    margin: 0;
-    padding: 0;
-}
 
+div{
+    width: inherit;
+    height: 75vh;
+    background-color: white;
+}
+.disabledbutton{
+    pointer-events: none;
+    opacity: 0.4;
+    background-color: red;
+}
 video{
     width: inherit;
-    height: inherit;
     object-fit: contain;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
 }
 button{
     position: relative;
     z-index: 10;
+    background-color: inherit;
 }
 #forward-video{
-    z-index: 5;
+    z-index: 1;
 }
-#backward-video{
-    z-index: 4;
+.infodiv{
+    display: block;
+    width: 100vw;
+    height: 100px;
+    background-color: black;
+    color: white;
+    position: relative;
+    top: 0;
+    z-index: 1000;
+}
+#videoTime, #currentIndex, #nextIndex, #prevIndex{
+    background-color: black;
+    color: white;
+    height: 10px;
+    padding-top: 10px;
+}
+#black-fade{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: black;
+    opacity: 1;
+    z-index: 2;
+    transition-property: all;
+    transition: all linear 0.5s;
+}
+#black-fade.transition{
+    opacity: 0;
 }

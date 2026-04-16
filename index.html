@@ -14,51 +14,58 @@
             <source src="forward.mp4" type="video/mp4">
             Your browser does not support HTML video.
         </video>
-        <video id="backward-video">
-            <source src="backward.mp4" type="video/mp4">
-            Your browser does not support HTML video.
-        </video>
         </div> 
 
-        <script> 
-            var forwardVideo = document.getElementById("forward-video");
-            var backwardVideo = document.getElementById("backward-video");
-            var visibleVideo = forwardVideo; 
-            var hiddenVideo = backwardVideo; 
-            visibleVideo.preload = "auto";
-            hiddenVideo.preload = "auto";
+        <div class="infodiv">
+            <div id="videoTime"></div>
+            <div id="currentIndex"></div>
+            <div id="nextIndex"></div>
+            <a href="test2.html">test with separate clips</a>
+        </div>
 
-            visibleVideo.play();
+        <script> 
+            const timestamps = [0,3,5,7,9,11,13,18];
+            var timestampIndex = 0;
+            var currentTimestamp = timestamps[timestampIndex];
+            var nextTimestamp = timestamps[timestampIndex + 1]
+            var videoSource = document.getElementById("forward-video");
+            var video = videoSource; 
+            video.preload = "auto";
+
+            video.play();
             
             setInterval(updateTimestamp, 200);
 
             function backwards() { 
-                swapVideos(backwardVideo, forwardVideo);
-                hiddenVideo.pause();
-                hiddenVideo.style.zIndex = 4;
-                visibleVideo.style.zIndex = 5;
-                visibleVideo.play();
+                setTimestamp(true);
             } 
             function pause() { 
-                visibleVideo.pause(); 
-                hiddenVideo.pause();
+                video.pause(); 
             } 
             function forwards() { 
-                swapVideos(forwardVideo, backwardVideo);
-                hiddenVideo.pause();
-                hiddenVideo.style.zIndex = 4;
-                visibleVideo.style.zIndex = 5;
-                visibleVideo.play();
+                setTimestamp(false)
             } 
             function updateTimestamp() {
-                var totalDuration = visibleVideo.duration;
-                var timestamp = visibleVideo.currentTime;
-                hiddenVideo.currentTime = totalDuration - timestamp;
+                var reachedStamp = (video.currentTime >= nextTimestamp);
+                if (reachedStamp){
+                    video.currentTime = nextTimestamp;
+                    video.pause();
+                }
+
+                document.getElementById("videoTime").innerHTML = "video time = " + video.currentTime;
+                document.getElementById("currentIndex").innerHTML = "current index = " + currentTimestamp;
+                document.getElementById("nextIndex").innerHTML = "next index = " + nextTimestamp;
+
             }
-            function swapVideos(visible, hidden){
-                visibleVideo = visible;
-                hiddenVideo = hidden;
+            function setTimestamp(doBackwards){
+                if (doBackwards) timestampIndex -= 1;
+                else timestampIndex += 1;
+                currentTimestamp = timestamps[timestampIndex];
+                nextTimestamp = timestamps[timestampIndex + 1];
+                video.currentTime = currentTimestamp;
+                if (!doBackwards) video.play();
             }
         </script> 
     </body>
 </html>
+
