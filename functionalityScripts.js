@@ -1,39 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="mainstyle.css">
-        <title>Bioprinter X</title>
-    </head>
-    <body>
-        <div style="text-align:center"> 
-            <div style="text-align: center;" id="video-buttons">
-                <button onclick="backwards()">Backwards</button> 
-                <button onclick="pause()">Pause</button>
-                <button onclick="forwards()">Forwards</button>
-            </div>
-            <div>
-                <div id="black-fade" class="transition"></div>
-                <video id="forward-video">
-                    <source src="backward.mp4" type="video/mp4">
-                    Your browser does not support HTML video.
-                </video>
-                <video id="back-video">
-                    <source src="backward.mp4" type="video/mp4">
-                    Your browser does not support HTML video.
-                </video>
-            </div>
-        </div> 
-
-        <div class="infodiv">
-            <div id="videoTime">not working</div>
-            <div id="prevIndex">not working</div>
-            <div id="currentIndex">not working</div>
-            <div id="nextIndex">not working</div>
-            <a href="index.html">test with one clip</a>
-        </div>
-
-        <script> 
-            const videos = [
+const videos = [
                 "Videos/vp_01.mp4",
                 "Videos/vp_02.mp4",
                 "Videos/vp_03.mp4",
@@ -46,7 +11,6 @@
             var prev = videos.length-1;
             var backVideo = document.getElementById("back-video");
             var video = document.getElementById("forward-video");
-
 
             video.preload = "auto";
 
@@ -63,36 +27,33 @@
                 setTimeout(() => {
                     setIndexes(true);
                     switchVideo();
-                    document.getElementById("black-fade").classList.toggle("transition");
+                    setTimeout(() => {
+                        document.getElementById("black-fade").classList.toggle("transition");
+                    }, 100);
                 }, 500);
-            } 
-            function pause() { 
-                video.pause(); 
-            } 
+            }
             function forwards() { 
                 document.getElementById("video-buttons").style.visibility = "hidden";
-                switchVideo();
-                setIndexes(false);
+                
                 video.play();
-            } 
-            function updateTimestamp() {
-
+            }
+            function updateTimestamp() { //function for debug values
                 document.getElementById("videoTime").innerHTML = "video time = " + video.currentTime;
-                document.getElementById("prevIndex").innerHTML = "next index = " + prev;
+                document.getElementById("prevIndex").innerHTML = "prev index = " + prev;
                 document.getElementById("currentIndex").innerHTML = "current index = " + i;
                 document.getElementById("nextIndex").innerHTML = "next index = " + next;
-
             }
             function setIndexes(doBackwards){
                 i += (doBackwards) ? -1 : 1; //decrement or increment i if backwards or not respectively
                 i = (i >= videos.length) ? 0 : (i <= -1) ? videos.length-1 : i; //if i is above videos array length, return to start
                 next = (i+1 >= videos.length) ? 0 : i+1; // if i+1 is above videos array length, return to start. else next = i+1
-                // prev = (i-1 <= -1) ? videos.length-1 : i-1 //same as above but in negative direction
+                prev = (i-1 <= -1) ? videos.length-1 : i-1 //same as above but in negative direction
             }
 
             function onEnd(){
-                    document.getElementById("video-buttons").style.visibility = "visible";
-                    
+                document.getElementById("video-buttons").style.visibility = "visible";
+                setIndexes(false);
+                switchVideo();
             }
 
             function switchVideo(){
@@ -103,16 +64,3 @@
                     backVideo.load();
                 }, 100);
             }
-
-        </script> 
-    </body>
-</html>
-
-
-<!-- 
-todo:
-- rethink order of functions for forward and backward play
-- make buttons look nice
-- convert this to index.html
-- make an array builder for all videos in folder
--->

@@ -18,16 +18,49 @@ div{
 }
 video{
     width: inherit;
-    object-fit: contain;
+    object-fit: cover;
+    overflow: hidden;
     position: absolute;
-    top: 0;
+    top: 50%;
     left: 0;
+    margin: -50vh 0;
 }
+.video-container{
+    height: 100vh;
+    background-color: red;
+}
+.video-container > *{
+    height: inherit;
+}
+
 button{
     position: relative;
     z-index: 10;
-    background-color: inherit;
+    background: linear-gradient(-90deg, rgba(124, 124, 124, 0) 0%, rgb(90, 90, 90) 95%);
+    border: none;
+    height: inherit;
+    width: 10vw;
+    opacity: 0.5;
+    transition: all linear 0.2s;
 }
+button.left{
+    background: linear-gradient(-90deg, rgba(124, 124, 124, 0) 0%, rgb(90, 90, 90) 95%);
+}
+button > img{
+    scale: 0.65;
+}
+button.left > img{
+    rotate: 180deg;
+}
+button.right{
+    background: linear-gradient(90deg, rgba(124, 124, 124, 0) 0%, rgb(90, 90, 90) 95%);
+}
+button:hover{
+    opacity: 1;
+}
+
+
+
 #forward-video{
     z-index: 1;
 }
@@ -49,6 +82,7 @@ button{
 }
 #black-fade{
     position: absolute;
+    height: inherit;
     top: 0;
     left: 0;
     background: black;
@@ -59,4 +93,15 @@ button{
 }
 #black-fade.transition{
     opacity: 0;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
 }

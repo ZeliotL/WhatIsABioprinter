@@ -5,67 +5,39 @@
         <title>Bioprinter X</title>
     </head>
     <body>
-        <div style="text-align:center"> 
-        <button onclick="backwards()">Backwards</button> 
-        <button onclick="pause()">Pause</button>
-        <button onclick="forwards()">Forwards</button>
-        <br><br>
-        <video id="forward-video">
-            <source src="forward.mp4" type="video/mp4">
-            Your browser does not support HTML video.
-        </video>
+        <div class="video-container"> 
+            <div class="flex-container" id="video-buttons">
+                <button onclick="backwards()" class="left"><img src="angle-double-right.png" alt=""></button> 
+                <button onclick="forwards()" class="right"><img src="angle-double-right.png" alt=""></button>
+            </div>
+            
+            <div id="black-fade" class="transition"></div>
+            <video id="forward-video">
+                <source src="backward.mp4" type="video/mp4">
+                Your browser does not support HTML video.
+            </video>
+            <video id="back-video">
+                <source src="backward.mp4" type="video/mp4">
+                Your browser does not support HTML video.
+            </video>
         </div> 
 
         <div class="infodiv">
-            <div id="videoTime"></div>
-            <div id="currentIndex"></div>
-            <div id="nextIndex"></div>
-            <a href="test2.html">test with separate clips</a>
+            <div id="videoTime">not working</div>
+            <div id="prevIndex">not working</div>
+            <div id="currentIndex">not working</div>
+            <div id="nextIndex">not working</div>
+            <a href="index.html">test with one clip</a>
         </div>
 
-        <script> 
-            const timestamps = [0,3,5,7,9,11,13,18];
-            var timestampIndex = 0;
-            var currentTimestamp = timestamps[timestampIndex];
-            var nextTimestamp = timestamps[timestampIndex + 1]
-            var videoSource = document.getElementById("forward-video");
-            var video = videoSource; 
-            video.preload = "auto";
-
-            video.play();
-            
-            setInterval(updateTimestamp, 200);
-
-            function backwards() { 
-                setTimestamp(true);
-            } 
-            function pause() { 
-                video.pause(); 
-            } 
-            function forwards() { 
-                setTimestamp(false)
-            } 
-            function updateTimestamp() {
-                var reachedStamp = (video.currentTime >= nextTimestamp);
-                if (reachedStamp){
-                    video.currentTime = nextTimestamp;
-                    video.pause();
-                }
-
-                document.getElementById("videoTime").innerHTML = "video time = " + video.currentTime;
-                document.getElementById("currentIndex").innerHTML = "current index = " + currentTimestamp;
-                document.getElementById("nextIndex").innerHTML = "next index = " + nextTimestamp;
-
-            }
-            function setTimestamp(doBackwards){
-                if (doBackwards) timestampIndex -= 1;
-                else timestampIndex += 1;
-                currentTimestamp = timestamps[timestampIndex];
-                nextTimestamp = timestamps[timestampIndex + 1];
-                video.currentTime = currentTimestamp;
-                if (!doBackwards) video.play();
-            }
-        </script> 
+        <script src="functionalityScripts.js"></script> 
     </body>
 </html>
 
+
+<!-- 
+todo:
+- rethink order of functions for forward and backward play
+- make buttons look nice
+- make an array builder for all videos in folder
+-->
