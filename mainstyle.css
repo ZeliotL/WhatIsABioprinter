@@ -14,8 +14,47 @@ div{
 .disabledbutton{
     pointer-events: none;
     opacity: 0.4;
-    background-color: red;
 }
+
+.info-container{
+    position: absolute;
+    height: fit-content;
+    width: fit-content;
+    top: 500px;
+    left: 50vw;
+    background: #00000000;
+    z-index: 10;
+}
+.info-container > svg > circle{
+    z-index: 11;
+    position: inherit;
+    top: 0;
+    left: 0;
+}
+.info-container > svg + div{
+    background: #ffffff50;
+    border-radius: 25px;
+    overflow: hidden;
+    /* background: #00000000; */
+    position: inherit;
+    top: 0;
+    left: 100px;
+    pointer-events: none;
+    width: 0px;
+    height: fit-content;
+    transition: 
+    all 0.5s ease-in-out;
+}
+.info-container > svg:hover + div{
+    width: 550px;
+    height: fit-content;
+}
+p{
+    margin-left: 25px;
+    width: 500px;
+    height: fit-content;
+}
+
 video{
     width: inherit;
     object-fit: cover;
@@ -27,7 +66,6 @@ video{
 }
 .video-container{
     height: 100vh;
-    background-color: red;
 }
 .video-container > *{
     height: inherit;
