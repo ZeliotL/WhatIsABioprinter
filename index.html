@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <link rel="stylesheet" href="mainstyle.css">
         <title>Bioprinter X</title>
     </head>
     <body>
-        <div class="video-container"> 
+        <div class="video-container" id="video-container"> 
             <div class="flex-container" id="video-buttons">
                 <button onclick="backwards()" class="left"><img src="angle-double-right.png" alt=""></button> 
                 <button onclick="forwards()" class="right"><img src="angle-double-right.png" alt=""></button>
@@ -20,28 +21,18 @@
                 <source src="backward.mp4" type="video/mp4">
                 Your browser does not support HTML video.
             </video>
+            <div class="info-holder" id="info-holder"></div>
+            <script src="infoContainerManager.js"></script>
         </div> 
 
-        <div class="info-container">
-            <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="50" cy="50" r="25" style="fill:rgb(0, 255, 255);">
-                <!-- <set attributeName="r" to="50" begin="3s" /> -->
-            </svg>
-            <div>
-                <p>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae ullam necessitatibus nemo id cum 
-                    aperiam voluptate molestiae asperiores nostrum, iure dolorem? Mollitia non rem ipsam blanditiis quos nostrum culpa est!
-                </p>
-            </div>
-        </div>
 
-        <div class="infodiv">
+        <!-- <div class="infodiv">
             <div id="videoTime">not working</div>
             <div id="prevIndex">not working</div>
             <div id="currentIndex">not working</div>
             <div id="nextIndex">not working</div>
             <a href="index.html">test with one clip</a>
-        </div>
+        </div> -->
 
         <script src="functionalityScripts.js"></script> 
     </body>
