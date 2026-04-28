@@ -1,10 +1,9 @@
 const videos = [
-    "Videos/clip2.mp4",
-    "Videos/clip3.mp4",
-    "Videos/clip4.mp4",
-    "Videos/clip5.mp4",
-    "Videos/clip6.mp4",
-    "Videos/clip7.mp4",
+    "Videos/clip_1.mp4",
+    "Videos/clip_2.mp4",
+    "Videos/clip_3.mp4",
+    "Videos/clip_4.mp4",
+    "Videos/clip_5.mp4"
 ]
 var i = 0;
 var next = 1;
