@@ -1,9 +1,14 @@
+:root{
+    --background-color: #c1c1c1;
+}
+
+
 html, body {
                 width: 100vw;
                 height: 65vh;
                 margin: 0;
                 padding: 0;
-                background-color: #000000;
+                background-color: var(--background-color);
             }
 
 div{
@@ -18,12 +23,13 @@ div{
 
 .info-container{
     position: absolute;
-    height: fit-content;
-    width: fit-content;
-    top: 500px;
+    height: 100px;
+    width: 100px;
     left: 50vw;
+    top: calc(100vw * (9/16));
     background: #00000000;
     z-index: 10;
+    margin: -50px -50px;
 }
 .info-container > svg > circle{
     z-index: 11;
@@ -46,26 +52,38 @@ div{
     all 0.5s ease-in-out;
 }
 .info-container > svg:hover + div{
-    width: 550px;
+    width: 20vw;
     height: fit-content;
 }
 p{
-    margin-left: 25px;
-    width: 500px;
+    margin-left: 2.5vw;
+    width: 15vw;
     height: fit-content;
 }
+.info-holder{
+    position: absolute;
+    height: inherit;
+    width: inherit;
+    top: 0;
+    left: 0;
+    background: transparent;
+}
+
 
 video{
     width: inherit;
-    object-fit: cover;
+    object-fit: contain;
     overflow: hidden;
     position: absolute;
-    top: 50%;
+    top: 0;
     left: 0;
-    margin: -50vh 0;
 }
 .video-container{
-    height: 100vh;
+    width: 100vw;
+    height: calc(100vw * (9/16));
+    /* scale: 100%; */
+    /* below makes everything non-interactive "blurs" the bottom edge*/
+    /* mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0)); */
 }
 .video-container > *{
     height: inherit;
@@ -74,26 +92,39 @@ video{
 button{
     position: relative;
     z-index: 10;
-    background: linear-gradient(-90deg, rgba(124, 124, 124, 0) 0%, rgb(90, 90, 90) 95%);
+    background: rgba(124, 124, 124, 0);
     border: none;
     height: inherit;
-    width: 10vw;
-    opacity: 0.5;
-    transition: all linear 0.2s;
+    width: 6vw;
+    opacity: 1;
+    overflow: hidden;
 }
 button.left{
-    background: linear-gradient(-90deg, rgba(124, 124, 124, 0) 0%, rgb(90, 90, 90) 95%);
-}
-button > img{
-    scale: 0.65;
-}
-button.left > img{
     rotate: 180deg;
 }
-button.right{
-    background: linear-gradient(90deg, rgba(124, 124, 124, 0) 0%, rgb(90, 90, 90) 95%);
+button > div{
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(124, 124, 124, 0) 0%,rgba(0, 0, 0, 0.25) 100%);
+    transition: all linear 0.35s;
 }
-button:hover{
+button > img{
+    position: absolute;
+    width: 75%;
+    top: 50%;
+    margin-top: -50%;
+    left: 25%;
+    opacity: 0.5;
+}
+/* button.right{
+    
+} */
+button:hover > div{
+    left: 0;
     opacity: 1;
 }
 
@@ -119,18 +150,20 @@ button:hover{
     padding-top: 10px;
 }
 #black-fade{
+    pointer-events: all;
     position: absolute;
     height: inherit;
     top: 0;
     left: 0;
     background: black;
     opacity: 1;
-    z-index: 2;
+    z-index: 10;
     transition-property: all;
     transition: all linear 0.5s;
 }
 #black-fade.transition{
     opacity: 0;
+    pointer-events: none;
 }
 
 .flex-container {
@@ -142,4 +175,14 @@ button:hover{
 .flex-column {
   display: flex;
   flex-direction: column;
+}
+
+.bottom-fade{
+    position: relative;
+    background: linear-gradient(180deg, rgba(124, 124, 124, 0) 0%, var(--background-color) 100%);
+    z-index: 10;
+    width: 100%;
+    height: 2%;
+    top: -2%;
+    left: 0;
 }
